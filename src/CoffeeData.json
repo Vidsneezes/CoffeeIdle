@@ -1,0 +1,20 @@
+{
+    "name":"Coffee Idle",
+    "baseCash":2.75,
+    "generators":[
+        {
+        "name":"Coffee Machine",
+        "baseCost":10,
+        "rate":2.3,
+        "productionBase":9,
+        "amount":0
+        },
+        {
+        "name":"Coffee Shop",
+        "baseCost":18,
+        "rate":2.3,
+        "productionBase":9,
+        "amount":0
+        }
+    ]
+}

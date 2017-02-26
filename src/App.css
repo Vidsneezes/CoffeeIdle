@@ -1,0 +1,117 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 90px;
+  padding: 0px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+button {
+  font-weight: normal !important;
+}
+
+.Click-Area{
+  margin: auto;
+  width: 40%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.Click-Area-Square{
+  margin: auto;
+  width: 50%;
+}
+
+.Generator{
+  margin: auto;
+  width: 40%;
+  border: 3px solid purple;
+  padding: 10px;
+}
+
+.rectangle {
+  background:gray;
+  border: 1px solid #999;
+  float: center;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 64px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.rectangle:focus {
+  outline: none;
+}
+
+.rectangle:active {
+  background: darkslategray;
+  transform: translateY(4px);
+}
+
+.rectangle-amount {
+  position: relative;
+  top: -8px;
+  left: -20%;
+  font-size: 18px;
+}
+
+.rectangle-name {
+  position: relative;
+  top: 0px;
+  left: 0%;
+  font-size: 18px;
+  font-weight: bold !important;
+}
+
+.rectangle-cost {
+  position: relative;
+  top: -8px;
+  left: 20%;
+  font-size: 18px;
+}
+
+.square {
+  background: green;
+  border: 1px solid #999;
+  float: center;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 220px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.square:active {
+  background: #3e8e41;
+  transform: translateY(4px);
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
