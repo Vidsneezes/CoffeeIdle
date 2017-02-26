@@ -10,6 +10,10 @@ function arrayToDict(obj,arr){
   });
 }
 
+function calculateCost(baseCost,rate,owned){
+  return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
+}
+
 class ButtonWidget extends Component{
   render(){
     return(
@@ -22,11 +26,16 @@ class ButtonWidget extends Component{
 
 class Generator extends Component {
   render(){
+    let buttonStatus = "";
+    if(this.props.disabled){
+      buttonStatus = "-dis";
+    }
+
     return(
-      <button className="rectangle" onClick={()=>this.props.onClick()}>
-        <span className="rectangle-amount">{this.props.amount}</span>
-        <span className="rectangle-name">{this.props.text}</span>
-        <span className="rectangle-cost">{"1x"+this.props.cost}</span>
+      <button className="rectangle" onClick={()=>this.props.onClick()} disabled={this.props.disabled}>
+        <span className={"rectangle-amount"+buttonStatus}>{this.props.amount}{"        "}</span>
+        <span className={"rectangle-name"+buttonStatus}>{this.props.text}</span>
+        <span className={"rectangle-cost"+buttonStatus}>{"       "}{"1x"+this.props.cost}</span>
       </button>
     );
   }
@@ -49,7 +58,9 @@ class App extends Component {
     this.state = {
       cash: 0,
       totalCashCollected: "$ 000000000",
-      generators:gens
+      generators:gens,
+      cashPerSec:0,
+      cashMax: 0
     };
     this.playerClicked = this.playerClicked.bind(this);
     this.generatorClick = this.generatorClick.bind(this);
@@ -63,40 +74,76 @@ class App extends Component {
   }
 
   playerClicked(){
-    const totalCash = this.state.cash + idleData.baseCash;
+    const totalCash = this.state.cash + (this.state.cashPerSec*0.04) + idleData.baseCash;
     const str = this.updateCashDisplay(totalCash);
+    const cashMax = totalCash > this.state.cashMax ? totalCash : this.state.cashMax;
     this.setState({
       cash:totalCash,
-      totalCashCollected: str
+      totalCashCollected: str,
+      cashMax:cashMax
     });
+    console.log(this.state);
   }
 
   generatorClick(generatorKey){
-    if(this.state.cash > this.state.generators[generatorKey].baseCost * this.state.generators[generatorKey].rate){
+    const cost = calculateCost(this.state.generators[generatorKey].baseCost,this.state.generators[generatorKey].rate,this.state.generators[generatorKey].amount);
+    if(this.state.cash > cost ){
+      const newCash = this.state.cash - cost;
       const newAmount = this.state.generators[generatorKey].amount + 1;
       const gens = update(this.state.generators,{
         [generatorKey]: {amount:{$set: newAmount}} 
       });
-      const newCash = this.state.cash - this.state.generators[generatorKey].baseCost * this.state.generators[generatorKey].rate;
       const str = this.updateCashDisplay(newCash);
       this.setState({
         cash:newCash,
         generators:gens,
-        totalCashCollected: str
+        totalCashCollected: str,
       });
     }
   }
 
-  render() {
-    const generators = idleData.generators.map((generator) =>
-    // Correct! Key should be specified inside the array.
-      <Generator key={generator.name}
-                 text={generator.name}
-                 cost={generator.baseCost * generator.rate} 
-                 onClick={()=>this.generatorClick(generator.name)}
-                 amount={this.state.generators[generator.name].amount}
-                 />
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
     );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    let cashAdd = 0;
+    for(var key in this.state.generators){
+      cashAdd = cashAdd + (this.state.generators[key].productionBase * this.state.generators[key].amount);
+    }
+    const totalCash = this.state.cash + cashAdd;
+    const str = this.updateCashDisplay(totalCash);
+    const cashMax = totalCash > this.state.cashMax ? totalCash : this.state.cashMax;
+    this.setState({
+      cash:totalCash,
+      totalCashCollected: str,
+      cashPerSec:cashAdd,
+      cashMax: cashMax
+    });
+  }
+
+  render() {
+    const generators = idleData.generators.map((generator) =>{
+    // Correct! Key should be specified inside the array.
+      if(this.state.cashMax > generator.initialCost){
+        const cost = calculateCost(generator.baseCost,generator.rate,this.state.generators[generator.name].amount);
+        const shouldDisable = this.state.cash < cost;
+        return(<Generator key={generator.name}
+                    text={generator.name}
+                    cost={cost} 
+                    onClick={()=>this.generatorClick(generator.name)}
+                    amount={this.state.generators[generator.name].amount}
+                    disabled={shouldDisable}
+                    />
+        );}
+    });
 
     return (
       <div className="App">
