@@ -1,44 +1,55 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 90px;
-  padding: 0px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
 
 button {
   font-weight: normal !important;
 }
 
+.container{
+  display: table;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.left-container{
+  position: absolute;
+  background-color: green;
+  top: 0px;
+  left: 0px;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.right-container{
+  position: absolute;
+  background-color: lime;
+  top: 0px;
+  right: 0px;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
 .Click-Area{
-  margin: auto;
-  width: 40%;
+  width: 140px;
   border: 3px solid green;
-  padding: 10px;
 }
 
 .Click-Area-Square{
-  margin: auto;
   width: 50%;
 }
 
-.Generator{
-  margin: auto;
-  width: 40%;
-  border: 3px solid purple;
+.generator-container{
+  width: 100px;
+  background-color: purple;
   padding: 5px;
+  display: table;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .rectangle {
@@ -108,9 +119,4 @@ button {
 .square:active {
   background: #3e8e41;
   transform: translateY(4px);
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

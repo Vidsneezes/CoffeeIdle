@@ -32,11 +32,18 @@ class Generator extends Component {
     }
 
     return(
-      <button className="rectangle" onClick={()=>this.props.onClick()} disabled={this.props.disabled}>
-        <span className={"rectangle-amount"+buttonStatus}>{this.props.amount}{"        "}</span>
-        <span className={"rectangle-name"+buttonStatus}>{this.props.text}</span>
-        <span className={"rectangle-cost"+buttonStatus}>{"       "}{"1x"+this.props.cost}</span>
-      </button>
+      <section className="generator-container">
+        <span className={"rectangle-amount"+buttonStatus}>Owned:{this.props.amount}</span>
+        <div className="left-container">
+          <button className="rectangle" onClick={()=>this.props.onClick()} disabled={this.props.disabled}>
+           Buy
+          </button>
+        </div>
+        <div className="right-container">
+          <span className={"rectangle-name"+buttonStatus}>{this.props.text}</span>
+          <span className={"rectangle-cost"+buttonStatus}>{"       "}{"1x"+this.props.cost}</span>
+        </div>
+      </section>
     );
   }
 }
@@ -132,7 +139,7 @@ class App extends Component {
   render() {
     const generators = idleData.generators.map((generator) =>{
     // Correct! Key should be specified inside the array.
-      if(this.state.cashMax > generator.initialCost){
+      //if(this.state.cashMax > generator.initialCost){
         const cost = calculateCost(generator.baseCost,generator.rate,this.state.generators[generator.name].amount);
         const shouldDisable = this.state.cash < cost;
         return(<Generator key={generator.name}
@@ -142,25 +149,26 @@ class App extends Component {
                     amount={this.state.generators[generator.name].amount}
                     disabled={shouldDisable}
                     />
-        );}
+        );
+      //}
     });
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>{idleData.name}</h2>
+      <section className="container">
+        <div className="left-container">
+          <div className="Click-Area">
+            <span className="Click-Area-Square">
+              <ClickArea text="Click Me" handleClick={this.playerClicked}/>
+            </span>
+            <h2>{this.state.totalCashCollected}</h2>
+          </div>
         </div>
-        <div className="Click-Area">
-          <span className="Click-Area-Square">
-            <ClickArea text="Click Me" handleClick={this.playerClicked}/>
-          </span>
-          <h2>{this.state.totalCashCollected}</h2>
+        <div className="right-container">
+          <div >
+            {generators}
+          </div>
         </div>
-        <div className="Generator">
-          {generators};
-        </div>
-     </div>
+      </section>
     );
   }
 }
