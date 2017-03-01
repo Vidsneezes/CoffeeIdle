@@ -14,6 +14,10 @@ function calculateCost(baseCost,rate,owned){
   return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
 }
 
+function calculateProduction(generator){
+  return generator.productionBase * generator.amount;
+}
+
 class ButtonWidget extends Component{
   render(){
     return(
@@ -33,15 +37,16 @@ class Generator extends Component {
 
     return(
       <section className="generator-container">
-        <span className={"rectangle-amount"+buttonStatus}>Owned:{this.props.amount}</span>
-        <div className="left-container">
+        <div className="generatorcontent-right">
           <button className="rectangle" onClick={()=>this.props.onClick()} disabled={this.props.disabled}>
            Buy
           </button>
         </div>
-        <div className="right-container">
-          <span className={"rectangle-name"+buttonStatus}>{this.props.text}</span>
-          <span className={"rectangle-cost"+buttonStatus}>{"       "}{"1x"+this.props.cost}</span>
+        <div className="generatorcontent-left">
+          <h5 className="center">Owned:{this.props.amount}</h5>
+          <p>{this.props.text}</p>
+          <p >{"costs: "+this.props.cost}</p>
+          <p >{this.props.cost+"$/s"}</p>
         </div>
       </section>
     );
@@ -123,7 +128,7 @@ class App extends Component {
   tick() {
     let cashAdd = 0;
     for(var key in this.state.generators){
-      cashAdd = cashAdd + (this.state.generators[key].productionBase * this.state.generators[key].amount);
+      cashAdd = cashAdd + calculateProduction(this.state.generators[key]);
     }
     const totalCash = this.state.cash + cashAdd;
     const str = this.updateCashDisplay(totalCash);
@@ -155,16 +160,14 @@ class App extends Component {
 
     return (
       <section className="container">
-        <div className="left-container">
-          <div className="Click-Area">
-            <span className="Click-Area-Square">
-              <ClickArea text="Click Me" handleClick={this.playerClicked}/>
-            </span>
+        <div className="game-area">
+          <div className="click-holder">
             <h2>{this.state.totalCashCollected}</h2>
+            <ClickArea text={"Click Me"} handleClick={this.playerClicked}/>
           </div>
         </div>
-        <div className="right-container">
-          <div >
+        <div className="generator-dock">
+          <div className="generator-holder">
             {generators}
           </div>
         </div>
