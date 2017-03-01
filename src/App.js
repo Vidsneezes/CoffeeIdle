@@ -44,9 +44,9 @@ class Generator extends Component {
         </div>
         <div className="generatorcontent-left">
           <h5 className="center">Owned:{this.props.amount}</h5>
-          <p>{this.props.text}</p>
-          <p >{"costs: "+this.props.cost}</p>
-          <p >{this.props.cost+"$/s"}</p>
+          <p className="center">{this.props.text}</p>
+          <p className="center">{"costs: "+this.props.cost}</p>
+          <p className="center">{this.props.production+"$/s"}</p>
         </div>
       </section>
     );
@@ -147,11 +147,13 @@ class App extends Component {
       //if(this.state.cashMax > generator.initialCost){
         const cost = calculateCost(generator.baseCost,generator.rate,this.state.generators[generator.name].amount);
         const shouldDisable = this.state.cash < cost;
+        const productionMax = calculateProduction(this.state.generators[generator.name]);
         return(<Generator key={generator.name}
                     text={generator.name}
                     cost={cost} 
                     onClick={()=>this.generatorClick(generator.name)}
                     amount={this.state.generators[generator.name].amount}
+                    production={""+productionMax}
                     disabled={shouldDisable}
                     />
         );
@@ -162,8 +164,9 @@ class App extends Component {
       <section className="container">
         <div className="game-area">
           <div className="click-holder">
+            <h1 className="center">Coffee Idler</h1>
             <h2>{this.state.totalCashCollected}</h2>
-            <ClickArea text={"Click Me"} handleClick={this.playerClicked}/>
+            <ClickArea text={"Make Coffee"} handleClick={this.playerClicked}/>
           </div>
         </div>
         <div className="generator-dock">
