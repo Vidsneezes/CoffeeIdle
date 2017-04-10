@@ -1,6 +1,4 @@
-export function addToBase(amount) {
-    return {
-        type: 'ADD_BASE',
-        amount
-    };
-};
+export const addBase = (amount) => ({
+    type: 'ADD_BASE',
+    amount
+});
