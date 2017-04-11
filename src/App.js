@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import logo from './logo.svg';
 import './App.css';
+import ClickArea from './components/ClickArea.jsx';
+import Generator from './components/Generator.jsx';
 import idleData from './CoffeeData.json';
 
 function arrayToDict(obj,arr){
@@ -16,49 +18,6 @@ function calculateCost(baseCost,rate,owned){
 
 function calculateProduction(generator){
   return generator.productionBase * generator.amount;
-}
-
-class ButtonWidget extends Component{
-  render(){
-    return(
-      <button className={this.props.style} onClick={()=>this.props.onClick()}>
-      {this.props.text}
-      </button>
-    );
-  }
-}
-
-class Generator extends Component {
-  render(){
-    let buttonStatus = "";
-    if(this.props.disabled){
-      buttonStatus = "-dis";
-    }
-
-    return(
-      <section className="generator-container">
-        <div className="generatorcontent-right">
-          <button className="rectangle" onClick={()=>this.props.onClick()} disabled={this.props.disabled}>
-           Buy
-          </button>
-        </div>
-        <div className="generatorcontent-left">
-          <h5 className="center">Owned:{this.props.amount}</h5>
-          <p className="center">{this.props.text}</p>
-          <p className="center">{"costs: "+this.props.cost}</p>
-          <p className="center">{this.props.production+"$/s"}</p>
-        </div>
-      </section>
-    );
-  }
-}
-
-class ClickArea extends Component{
-  render(){
-    return (
-      <ButtonWidget text={this.props.text} style="square" onClick={this.props.handleClick} />
-    );
-  }
 }
 
 class App extends Component {
@@ -143,8 +102,6 @@ class App extends Component {
 
   render() {
     const generators = idleData.generators.map((generator) =>{
-    // Correct! Key should be specified inside the array.
-      //if(this.state.cashMax > generator.initialCost){
         const cost = calculateCost(generator.baseCost,generator.rate,this.state.generators[generator.name].amount);
         const shouldDisable = this.state.cash < cost;
         const productionMax = calculateProduction(this.state.generators[generator.name]);
@@ -157,7 +114,6 @@ class App extends Component {
                     disabled={shouldDisable}
                     />
         );
-      //}
     });
 
     return (
