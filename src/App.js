@@ -19,14 +19,6 @@ function calculateProduction(generator){
   return generator.productionBase * generator.amount;
 }
 
-class ClickArea extends Component{
-  render(){
-    return (
-      <ButtonWidget text={this.props.text} style="square" onClick={this.props.handleClick} />
-    );
-  }
-}
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -109,8 +101,6 @@ class App extends Component {
 
   render() {
     const generators = idleData.generators.map((generator) =>{
-    // Correct! Key should be specified inside the array.
-      //if(this.state.cashMax > generator.initialCost){
         const cost = calculateCost(generator.baseCost,generator.rate,this.state.generators[generator.name].amount);
         const shouldDisable = this.state.cash < cost;
         const productionMax = calculateProduction(this.state.generators[generator.name]);
@@ -123,7 +113,6 @@ class App extends Component {
                     disabled={shouldDisable}
                     />
         );
-      //}
     });
 
     return (
