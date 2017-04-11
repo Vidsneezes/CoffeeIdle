@@ -4,34 +4,12 @@ import logo from './logo.svg';
 import './App.css';
 import ClickArea from './components/ClickArea.jsx';
 import Generator from './components/Generator.jsx';
-import idleData from './CoffeeData.json';
-
-function arrayToDict(obj,arr){
-  arr.forEach(function(item){
-    obj[item.name] = item;
-  });
-}
-
-function calculateCost(baseCost,rate,owned){
-  return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
-}
-
-function calculateProduction(generator){
-  return generator.productionBase * generator.amount;
-}
 
 class App extends Component {
   constructor(props){
     super(props);
     const gens = {};
     arrayToDict(gens,idleData.generators);
-    this.state = {
-      cash: 0,
-      totalCashCollected: "$ 000000000",
-      generators:gens,
-      cashPerSec:0,
-      cashMax: 0
-    };
     this.playerClicked = this.playerClicked.bind(this);
     this.generatorClick = this.generatorClick.bind(this);
   }
