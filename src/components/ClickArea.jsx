@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ButtonWidget from './ButtonWidget.jsx';
 
 class ClickArea extends Component{
   render(){

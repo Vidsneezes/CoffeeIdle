@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import logo from './logo.svg';
 import './App.css';
-import ButtonWidget from './components/buttons/ButtonWidget.jsx';
+import ClickArea from './components/ClickArea.jsx';
+import Generator from './components/Generator.jsx';
 import idleData from './CoffeeData.json';
 
 function arrayToDict(obj,arr){
@@ -24,7 +25,6 @@ class App extends Component {
     super(props);
     const gens = {};
     arrayToDict(gens,idleData.generators);
-    console.log(gens);
     this.state = {
       cash: 0,
       totalCashCollected: "$ 000000000",
