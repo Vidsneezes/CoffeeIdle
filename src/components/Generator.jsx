@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Generator = ({name, amount, nextCost}) => {
+const Generator = ({name, amount, nextCost, Producing}) => {
     /* if(done === false)
      {
         gridPieces = grid.map((val,index) => 
