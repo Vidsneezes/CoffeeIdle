@@ -1,28 +1,22 @@
 import React, { PropTypes } from 'react';
 
-const Generator = ({name, amount, nextCost, Producing}) => {
-    /* if(done === false)
-     {
-        gridPieces = grid.map((val,index) => 
-            <InteractionBox key={index} indexPosition={index} />)
-     }else{
-         gridPieces = (
-             <p>
-             Game done
-             </p>
-         )
-     }
-     
+const Generator = ({name, amount, nextCost, producing}) => {
+
      return (
-        <div>
-            {gridPieces}
+         <div>
+            <p>{name}</p>
+            <p>{"Amount: " + amount}</p>
+            <p>{"Producing: " + producing}</p>
+            <p>{"Cost: " + nextCost}</p>
         </div>
-     )*/
+     )
 }
 
 BoardDisplay.propTypes = {
-    grid: PropTypes.array,
-    done: PropTypes.bool
+    name: PropTypes.string,
+    producing: PropTypes.number,
+    nextCost: PropTypes.number,
+    amount: PropTypes.number
 }
 
 
