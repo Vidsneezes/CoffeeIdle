@@ -11,18 +11,6 @@ const ButtonWidget = ({onClick, style, text}) => {
      )
 }
 
-class ButtonWidget extends Component {
-    render() {
-        return ( <button 
-                    className = { this.props.style }
-                    onClick = {() => this.props.onClick()} 
-                 > 
-                 { this.props.text } 
-                 </button>
-        )
-    }
-}
-
 ButtonWidget.propTypes = {
     onClick: PropTypes.func,
     style: PropTypes.string,

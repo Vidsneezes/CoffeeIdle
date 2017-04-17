@@ -11,7 +11,7 @@ const Generator = ({name, amount, nextCost, producing}) => {
      )
 }
 
-BoardDisplay.propTypes = {
+Generator.propTypes = {
     name: PropTypes.string,
     producing: PropTypes.number,
     nextCost: PropTypes.number,
@@ -19,4 +19,4 @@ BoardDisplay.propTypes = {
 }
 
 
-export default BoardDisplay;
+export default Generator;
