@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import ButtonWidget from './ButtonWidget.jsx';
 
-class ClickArea extends Component{
-  render(){
-    return (
-      <ButtonWidget text={this.props.text} style="square" onClick={this.props.handleClick} />
-    );
-  }
+const ClickArea = ({text, style, onClick}) => {
+  return (
+    <ButtonWidget text={text} style={style} onClick={onClick} />
+  )
+}
+
+ClickArea.propTypes = {
+    onClick: PropTypes.func,
+    style: PropTypes.string,
+    text: PropTypes.string
 }
 
 export default ClickArea;

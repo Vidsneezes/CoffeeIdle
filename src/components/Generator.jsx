@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 const Generator = ({name, amount, nextCost, producing}) => {
-
      return (
          <div>
             <p>{name}</p>
