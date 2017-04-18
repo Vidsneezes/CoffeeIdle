@@ -26,6 +26,12 @@ export function reducers(state = initialState , action){
             }
             state.set('buyAmount',newAmount);
             return state;
+        case INCREASE_TICK:
+            let amountForTick = state.get('generators').reduce(
+                (total, value) => total + value.get('productionBase') * value.get('amount'),0);
+            let totalCash = state.get('cash') + amountForTick;
+            state.set('cash', totalCash);
+            return state;
         default:
             return state;
     }
