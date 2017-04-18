@@ -1,7 +1,7 @@
 import { List, Map } from 'immutable';
-import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initialState } from './actions';
+import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initialState } from '../actions/index';
 
-export function reducers(state = initialState , action){
+export default function reducers(state = initialState , action){
     switch(action.type){
         case INCREASE_CLICK:
             let cash = state.get('cash');
