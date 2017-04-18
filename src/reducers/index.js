@@ -9,7 +9,13 @@ export function reducers(state = initialState , action){
             state.set('cash', cash);
         return state;
         case BUY_GENERATOR:
-
+            const amountToBuy = state.get('buyAmount');
+            const generatorIndex = state.get('generators').findIndex(generator => {
+                return generator.get('name') === action.generatorName;
+            });
+            let amount = state.getIn(['generators', generatorIndex, 'amount']) + amountToBuy;
+            state.setIn(['generators',generatorIndex,'amount'],amount);
+            return state;
         return state;
     }
 
