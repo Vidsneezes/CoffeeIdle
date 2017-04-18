@@ -6,16 +6,14 @@ export default function reducers(state = initialState , action){
         case INCREASE_CLICK:
             let cash = state.get('cash');
             cash = cash + state.get('cashPerClick');
-            state.set('cash', cash);
-            return state;
+            return state.set('cash', cash);
         case BUY_GENERATOR:
             const amountToBuy = state.get('buyAmount');
             const generatorIndex = state.get('generators').findIndex(generator => {
                 return generator.get('name') === action.generatorName;
             });
             let amount = state.getIn(['generators', generatorIndex, 'amount']) + amountToBuy;
-            state.setIn(['generators',generatorIndex,'amount'],amount);
-            return state;
+            return state.setIn(['generators',generatorIndex,'amount'],amount);
         case CHANGE_BUY_AMOUNT: 
             const current = state.get('buyAmount');
             let newAmount = 1;
@@ -24,14 +22,12 @@ export default function reducers(state = initialState , action){
             }else if(current === 5){
                 newAmount = 10;
             }
-            state.set('buyAmount',newAmount);
-            return state;
+            return state.set('buyAmount',newAmount);
         case INCREASE_TICK:
             let amountForTick = state.get('generators').reduce(
                 (total, value) => total + value.get('productionBase') * value.get('amount'),0);
             let totalCash = state.get('cash') + amountForTick;
-            state.set('cash', totalCash);
-            return state;
+            return state.set('cash', totalCash);
         default:
             return state;
     }
