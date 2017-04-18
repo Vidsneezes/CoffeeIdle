@@ -1,3 +1,6 @@
+## Status
+Currrently rebuiling logic with redux and immutable
+
 ## Coffee Idle
 
 A small idle game project using reactjs
