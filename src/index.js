@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import reducers from './reducers/index';
-import App from './App';
+import App from './components/App';
 import './index.css';
 import {changeBuyAmount, increaseClick, buyGenerator, increaseTick} from './actions/index';
 
@@ -21,7 +21,7 @@ store.dispatch(increaseTick());
 
 unsubscribe();
 
-/*ReactDOM.render(
-  <div></div>,
+ReactDOM.render(
+  <App />,
   document.getElementById('root')
-);*/
+);
