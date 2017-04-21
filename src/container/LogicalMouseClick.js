@@ -6,7 +6,8 @@ import { increaseClick } from '../actions/index';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       
+        totalCash: state.get('cash'),
+        cashPreClick: state.get('cashPerClick')
     }
 }
 
