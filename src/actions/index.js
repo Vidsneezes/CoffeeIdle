@@ -17,6 +17,14 @@ export const initialState = Map({
             productionBase:3,
             amount:0,
             initialCost:0
+        }),
+         Map({
+            name:"Macha",
+            baseCost:6,
+            rate:1.07,
+            productionBase:3,
+            amount:0,
+            initialCost:0
         })
     ])
 })
