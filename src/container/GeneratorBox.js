@@ -5,7 +5,10 @@ import Generator from '../components/Generator';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        name: state.get('generators').get(0).get("name")
+        name: state.get('generators').get(0).get("name"),
+        amount:0,
+        producing:0,
+        nextCost:0
     }
 }
 
