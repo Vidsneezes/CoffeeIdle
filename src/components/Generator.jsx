@@ -1,22 +1,17 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
 
-const Generator = ({name, amount, nextCost, producing}) => {
-     return (
-         <div>
-            <p>{name}</p>
-            <p>{"Amount: " + amount}</p>
-            <p>{"Producing: " + producing}</p>
-            <p>{"Cost: " + nextCost}</p>
+class Generator extends Component {
+  render() {
+      return (
+        <div>
+            <p>{this.props.name}</p>
+            <p>{"Amount: " + this.props.amount}</p>
+            <p>{"Producing: " + this.props.producing}</p>
+            <p>{"Cost: " + this.props.nextCost}</p>
         </div>
-     )
-}
+    );
+  }
 
-Generator.propTypes = {
-    name: PropTypes.string,
-    producing: PropTypes.number,
-    nextCost: PropTypes.number,
-    amount: PropTypes.number
 }
-
 
 export default Generator;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ClickerArea from './ClickerArea'
+import ClickerArea from './ClickerArea';
+import Generator from './Generator';
 
 class App extends Component {
   
