@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ClickerArea from './ClickerArea';
-import Generator from './Generator';
+import LogicalMouseClick from '../container/LogicalMouseClick';
 
 class App extends Component {
   
   render() {
     return (
      <div>
-        <ClickerArea />
+        <LogicalMouseClick />
      </div>
     );
   }
