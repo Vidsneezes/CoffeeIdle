@@ -1,4 +1,4 @@
-div {
+.generator {
     background: dimgray;
     border: 1px solid #999;
     float: center;
@@ -11,4 +11,18 @@ div {
     padding: 0;
     text-align: center;
     width: 100%;
+}
+
+.generator:focus {
+    outline: none;
+}
+
+.generator:disabled {
+    background: black;
+    color: gray;
+}
+
+.generator:active {
+    background: darkblue;
+    transform: translateY(4px);
 }

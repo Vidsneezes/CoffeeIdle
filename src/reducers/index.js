@@ -1,6 +1,10 @@
 import { List, Map } from 'immutable';
 import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initialState } from '../actions/index';
 
+//TODO apply cost formulas
+//TODO add not enough money conditions
+//TODO maybe but boostrap, for single page
+
 export default function reducers(state = initialState , action){
     switch(action.type){
         case INCREASE_CLICK:

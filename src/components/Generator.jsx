@@ -4,7 +4,7 @@ import './styles/Generator.css';
 class Generator extends Component {
   render() {
       return (
-        <div onClick={this.props.onClick}>
+        <div onClick={this.props.onClick} className="generator">
             <p>{this.props.name}</p>
             <p>{"Amount: " + this.props.amount}</p>
             <p>{"Producing: " + this.props.producing}</p>
