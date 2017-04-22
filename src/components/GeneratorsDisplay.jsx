@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import LogicalMouseClick from '../container/LogicalMouseClick';
 import GeneratorBox from '../container/GeneratorBox';
 
 
-class App extends Component {
+class GeneratorDisplay extends Component {
   
   render() {
     return (
      <div>
-        <LogicalMouseClick />
         <GeneratorBox indexN = {0}  />
      </div>
     );
@@ -16,4 +14,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default GeneratorDisplay;
