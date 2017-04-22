@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Generator extends Component {
   render() {
       return (
-        <div>
+        <div onClick={this.props.onClick}>
             <p>{this.props.name}</p>
             <p>{"Amount: " + this.props.amount}</p>
             <p>{"Producing: " + this.props.producing}</p>
