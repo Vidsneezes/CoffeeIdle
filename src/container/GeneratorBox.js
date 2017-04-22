@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import Generator from '../components/Generator';
+import { buyGenerator } from '../actions/index';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -14,7 +15,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-     
+        onClick: () => {
+            dispatch(buyGenerator(ownProps.gName))
+        }
     }
 }
 
