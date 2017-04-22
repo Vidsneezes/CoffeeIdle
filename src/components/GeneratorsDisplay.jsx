@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import GeneratorBox from '../container/GeneratorBox';
 
 
-class GeneratorDisplay extends Component {
+class GeneratorsDisplay extends Component {
   
   render() {
     const generators = this.props.gens.map((item,index) =>{
-        return <GeneratorBox indexN = {index} gName = {item.name} />
+        console.log(" "+index + " " + item.get("name"));
+        return <GeneratorBox key = {index} indexN = {index} gName = {item.name} />
     });
 
     return (
@@ -18,4 +19,4 @@ class GeneratorDisplay extends Component {
 
 }
 
-export default GeneratorDisplay;
+export default GeneratorsDisplay;

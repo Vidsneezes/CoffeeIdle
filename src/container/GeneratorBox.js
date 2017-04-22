@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onClick: () => {
-            dispatch(buyGenerator(ownProps.gName))
+            dispatch(buyGenerator(ownProps.gName,ownProps.indexN))
         }
     }
 }

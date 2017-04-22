@@ -37,9 +37,10 @@ export const increaseClick = () => ({
     type: INCREASE_CLICK
 })
 
-export const buyGenerator = (generatorName) => ({
+export const buyGenerator = (generatorName, indexG) => ({
     type: BUY_GENERATOR,
-    generatorName
+    generatorName,
+    indexG
 })
 
 export const increaseTick = () => ({

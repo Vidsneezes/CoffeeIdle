@@ -10,11 +10,9 @@ export default function reducers(state = initialState , action){
             return state.set('cash', cash);
         case BUY_GENERATOR:
             const amountToBuy = state.get('buyAmount');
-            const generatorIndex = state.get('generators').findIndex(generator => {
-                return generator.get('name') === action.generatorName;
-            });
-            let amount = state.getIn(['generators', generatorIndex, 'amount']) + amountToBuy;
-            return state.setIn(['generators',generatorIndex,'amount'],amount);
+            console.log(action.generatorName, action.indexG)
+            let amount = state.getIn(['generators', action.indexG, 'amount']) + amountToBuy;
+            return state.setIn(['generators',action.indexG,'amount'],amount);
         case CHANGE_BUY_AMOUNT: 
             const current = state.get('buyAmount');
             let newAmount = 1;

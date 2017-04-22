@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LogicalMouseClick from '../container/LogicalMouseClick';
-import GeneratorBox from '../container/GeneratorBox';
+import GeneratorManager from '../container/GeneratorManager';
 
 
 class App extends Component {
@@ -9,6 +9,7 @@ class App extends Component {
     return (
      <div>
         <LogicalMouseClick />
+        <GeneratorManager />
      </div>
     );
   }

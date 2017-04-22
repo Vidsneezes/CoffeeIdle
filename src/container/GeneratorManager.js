@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
+import GeneratorsDisplay from '../components/GeneratorsDisplay';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -16,6 +17,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const GeneratorManager = connect(
     mapStateToProps,
     mapDispatchToProps
-)(GeneratorManager)
+)(GeneratorsDisplay)
 
 export default GeneratorManager;
