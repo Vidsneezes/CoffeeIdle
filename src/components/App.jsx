@@ -9,7 +9,6 @@ class App extends Component {
     return (
      <div>
         <LogicalMouseClick />
-        <GeneratorBox indexN = {0}  />
      </div>
     );
   }
