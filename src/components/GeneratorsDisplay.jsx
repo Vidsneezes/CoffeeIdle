@@ -5,9 +5,13 @@ import GeneratorBox from '../container/GeneratorBox';
 class GeneratorDisplay extends Component {
   
   render() {
+    const generators = this.props.gens.map((item,index) =>{
+        return <GeneratorBox indexN = {index} gName = {item.name} />
+    });
+
     return (
      <div>
-        <GeneratorBox indexN = {0}  />
+        {generators}
      </div>
     );
   }
