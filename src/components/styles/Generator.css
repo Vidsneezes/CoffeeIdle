@@ -1,0 +1,14 @@
+div {
+    background: dimgray;
+    border: 1px solid #999;
+    float: center;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 100%;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
