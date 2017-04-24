@@ -22,10 +22,18 @@ export default function reducers(state = initialState , action){
             console.log("k");
             return state.set('cash', cash);
         case BUY_GENERATOR:
-            const amountToBuy = state.get('buyAmount');
-            console.log(action.generatorName, action.indexG)
-            let amount = state.getIn(['generators', action.indexG, 'amount']) + amountToBuy;
-            return state.setIn(['generators',action.indexG,'amount'],amount);
+            const baseCost = state.getIn(['generators',action.indexG, 'baseCost']);
+            const rate = state.getIn(['generators',action.indexG, 'rate']);
+            const amount = state.getIn(['generators',action.indexG, 'amount']);
+            const cost = calculateCost(baseCost,rate,amount);
+            const cash = state.get('cash');
+            if(cash >= cost){
+                let cashState = state.setIn('cash',cash - cost);
+                const amountToBuy = state.get('buyAmount');
+                let amount = cashState.getIn(['generators', action.indexG, 'amount']) + amountToBuy;
+                return cashState.setIn(['generators',action.indexG,'amount'],amount);
+            }
+            return state;
         case CHANGE_BUY_AMOUNT: 
             const current = state.get('buyAmount');
             let newAmount = 1;
