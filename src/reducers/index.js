@@ -19,8 +19,7 @@ export default function reducers(state = initialState , action){
     switch(action.type){
         case INCREASE_CLICK:
             cash = state.get('cash');
-            cash = cash + state.get('cashPerClick');
-            console.log("k");
+            cash = cash + state.get('cashPerClick') * 0.04;
             return state.set('cash', cash);
         case BUY_GENERATOR:
             const baseCost = state.getIn(['generators',action.indexG, 'baseCost']);
