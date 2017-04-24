@@ -2,15 +2,15 @@ import { List, Map } from 'immutable';
 import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initialState } from '../actions/index';
 
 //TODO apply cost formulas
-//TODO add not enough money conditions
+//TODO add not enough money conditions cleared
 //TODO maybe but boostrap, for single page
 
 function calculateCost(baseCost,rate,owned){
   return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
 }
 
-function calculateProduction(generator){
-  return generator.productionBase * generator.amount;
+function calculateProduction(productionBase, amount){
+  return productionBase * amount;
 }
 
 
@@ -45,6 +45,11 @@ export default function reducers(state = initialState , action){
             }
             return state.set('buyAmount',newAmount);
         case INCREASE_TICK:
+            let cashAdd = 0;
+            const generators = state.get('generators');
+            generators.forEach((generator)=>{
+                cashAdd = cashAdd + calculateProduction(generator.get('productionBase'),generator.get('amount'));
+            });
             let amountForTick = state.get('generators').reduce(
                 (total, value) => total + value.get('productionBase') * value.get('amount'),0);
             let totalCash = state.get('cash') + amountForTick;
