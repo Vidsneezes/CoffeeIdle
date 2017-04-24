@@ -50,10 +50,10 @@ export default function reducers(state = initialState , action){
             generators.forEach((generator)=>{
                 cashAdd = cashAdd + calculateProduction(generator.get('productionBase'),generator.get('amount'));
             });
-            let amountForTick = state.get('generators').reduce(
-                (total, value) => total + value.get('productionBase') * value.get('amount'),0);
             let totalCash = state.get('cash') + amountForTick;
-            return state.set('cash', totalCash);
+            state = state.set('cash', totalCash);
+            state = state.set('cashPerClick',cashAdd);
+            return state;
         default:
             return state;
     }
