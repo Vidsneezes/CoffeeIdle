@@ -1,9 +1,9 @@
 import { List, Map } from 'immutable';
 import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initialState } from '../actions/index';
 
-//TODO apply cost formulas
-//TODO add not enough money conditions cleared
-//TODO maybe but boostrap, for single page
+//TODO do some css work
+//TODO maybe do tick via time
+//TODO delete un used classes
 
 export function calculateCost(baseCost,rate,owned){
   return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
