@@ -15,9 +15,10 @@ function calculateProduction(generator){
 
 
 export default function reducers(state = initialState , action){
+    let cash;
     switch(action.type){
         case INCREASE_CLICK:
-            let cash = state.get('cash');
+            cash = state.get('cash');
             cash = cash + state.get('cashPerClick');
             console.log("k");
             return state.set('cash', cash);
@@ -26,9 +27,9 @@ export default function reducers(state = initialState , action){
             const rate = state.getIn(['generators',action.indexG, 'rate']);
             const amount = state.getIn(['generators',action.indexG, 'amount']);
             const cost = calculateCost(baseCost,rate,amount);
-            const cash = state.get('cash');
+            cash = state.get('cash');
             if(cash >= cost){
-                let cashState = state.setIn('cash',cash - cost);
+                let cashState = state.set('cash',cash - cost);
                 const amountToBuy = state.get('buyAmount');
                 let amount = cashState.getIn(['generators', action.indexG, 'amount']) + amountToBuy;
                 return cashState.setIn(['generators',action.indexG,'amount'],amount);

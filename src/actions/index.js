@@ -6,7 +6,7 @@ export const INCREASE_TICK = "INCREASE_TICK";
 export const CHANGE_BUY_AMOUNT = "CHANGE_BUY_AMOUNT"; 
 
 export const initialState = Map({
-    cash:0,
+    cash:50000,
     buyAmount: 1,
     cashPerClick: 1,
     generators: List([
