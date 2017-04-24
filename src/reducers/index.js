@@ -5,6 +5,15 @@ import { INCREASE_CLICK, BUY_GENERATOR, CHANGE_BUY_AMOUNT, INCREASE_TICK, initia
 //TODO add not enough money conditions
 //TODO maybe but boostrap, for single page
 
+function calculateCost(baseCost,rate,owned){
+  return Math.round((baseCost * Math.pow(rate,owned) * 100)) /100;
+}
+
+function calculateProduction(generator){
+  return generator.productionBase * generator.amount;
+}
+
+
 export default function reducers(state = initialState , action){
     switch(action.type){
         case INCREASE_CLICK:
