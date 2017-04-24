@@ -49,7 +49,7 @@ export default function reducers(state = initialState , action){
             generators.forEach((generator)=>{
                 cashAdd = cashAdd + calculateProduction(generator.get('productionBase'),generator.get('amount'));
             });
-            let totalCash = state.get('cash') + amountForTick;
+            let totalCash = state.get('cash') + cashAdd;
             state = state.set('cash', totalCash);
             state = state.set('cashPerClick',cashAdd);
             return state;

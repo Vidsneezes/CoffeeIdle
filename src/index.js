@@ -22,6 +22,8 @@ store.dispatch(increaseTick());
 
 unsubscribe();
 
+setInterval(()=>{ store.dispatch(increaseTick()) },1000);
+
 ReactDOM.render(
   <Provider store = {store}>
     <App />
